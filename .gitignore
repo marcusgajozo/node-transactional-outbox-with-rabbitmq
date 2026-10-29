@@ -1,0 +1,16 @@
+*
+
+!/database/
+!/database/**/*
+!/docs/
+!/docs/**/*
+!/src
+!/src/**/*
+
+!.gitignore
+!.nvmrc
+!compose.local.yaml
+!env.example
+!package.json
+!pnpm-lock.yaml
+!tsconfig.json

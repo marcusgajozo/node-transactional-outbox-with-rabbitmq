@@ -1,0 +1,51 @@
+networks:
+  api-network:
+    driver: bridge
+
+services:
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: app.Dockerfile
+    entrypoint: .docker/entrypoint-local.sh
+    ports:
+      - ${PORT}:80
+      - ${DEBUG_PORT:-9230}:9229
+    volumes:
+      - .:/api
+    networks:
+      - api-network
+
+  api-db:
+    container_name: api-db
+    image: postgres:14-alpine
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=monitora_auth
+      - TZ=America/Campo_Grande
+      - PGTZ=America/Campo_Grande
+    volumes:
+      - api-db:/var/lib/postgresql/data
+    networks:
+      - api-network
+
+  api-rabbitmq:
+    container_name: api-rabbitmq
+    image: rabbitmq:3.13-management-alpine
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      - TZ=America/Campo_Grande
+    volumes:
+      - api-rabbitmq:/var/lib/rabbitmq
+    networks:
+      - api-network
+
+volumes:
+  api-db: {}
+  api-rabbitmq: {}
