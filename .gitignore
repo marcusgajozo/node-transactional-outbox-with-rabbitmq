@@ -7,10 +7,10 @@
 !/src
 !/src/**/*
 
+!.env.example
 !.gitignore
 !.nvmrc
 !compose.local.yaml
-!env.example
 !package.json
 !pnpm-lock.yaml
 !pnpm-workspace.yaml
