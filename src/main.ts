@@ -1,5 +1,5 @@
 import fastify from 'fastify'
-import { checkDatabase, closeDatabase } from './database/index.ts'
+import { checkDatabase, closeDatabase } from './modules/database/database.module.ts'
 
 const server = fastify({ logger: true })
 
