@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { DatabaseModule } from '../database/database.module.js';
+import { RabbitmqModule } from '../rabbitmq/rabbitmq.module.js';
 import { ProductorsModule } from '../productors/productors.module.js';
 import { OutboxProductorModule } from '../outbox/outbox-productor.module.js';
 
@@ -13,6 +14,7 @@ import { OutboxProductorModule } from '../outbox/outbox-productor.module.js';
       cache: true,
     }),
     DatabaseModule,
+    RabbitmqModule,
     ProductorsModule,
     OutboxProductorModule,
   ],
