@@ -5,6 +5,8 @@ import { KNEX_CONNECTION } from '../database/database.constants.js';
 import { ProductorsService } from './productors.service.js';
 import type { ProductorRow } from './entities/productor.entity.js';
 
+// TODO: I need to improve test and remove implementarion test
+
 describe('ProductorsService', () => {
   let service: ProductorsService;
 
