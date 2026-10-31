@@ -1,7 +1,8 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiCreatedResponse,
+  ApiOkResponse,
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
@@ -26,5 +27,16 @@ export class ProductorsController {
   })
   async create(@Body() body: CreateProductorDto): Promise<Productor> {
     return await this.productorsService.create(body);
+  }
+
+  @Get()
+  @ApiOperation({ summary: 'Find all productors' })
+  @ApiOkResponse({
+    description: 'List of productors',
+    type: ProductorResponseDto,
+    isArray: true,
+  })
+  async findAll(): Promise<Productor[]> {
+    return await this.productorsService.findAll();
   }
 }

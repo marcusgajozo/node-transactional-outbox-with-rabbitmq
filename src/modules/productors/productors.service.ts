@@ -53,4 +53,9 @@ export class ProductorsService {
       return createdProductor;
     });
   }
+
+  async findAll(): Promise<Productor[]> {
+    const rows = await this.knex<ProductorRow>('productors').select('*');
+    return rows.map(toProductor);
+  }
 }
